@@ -1,10 +1,10 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Dexie from "dexie";
 
 import type { ColumnDef } from "@tanstack/react-table";
-import Table from "./components/Table";
+import CustomTable from "./components/Table";
 import { useLiveQuery } from "dexie-react-hooks";
 import { TCustomer } from "./registration/types";
 
@@ -51,12 +51,12 @@ const cols: ColumnDef<TCustomer>[] = [
 
 export default function Home() {
   const customers = useLiveQuery(() => customer.toArray(), []);
-  console.log(customers);
+
   const colList = useMemo(() => cols, []);
 
   return (
     <div className="w-auto space-y-8 px-2 md:px-5 lg:px-10 py-4 md:py-8 lg:py-10">
-      <Table columns={colList} data={customers || []} />
+      <CustomTable columns={colList} data={customers || []} />
     </div>
   );
 }

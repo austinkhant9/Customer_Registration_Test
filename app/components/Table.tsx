@@ -22,20 +22,22 @@ import {
   BiUpArrow,
 } from "react-icons/bi";
 import { BsSearch } from "react-icons/bs";
-import { FaLeftLong } from "react-icons/fa6";
 
 interface ReactTableProps<T extends object> {
   data: T[];
   columns: ColumnDef<T>[];
 }
 
-const Table = <T extends object>({ data, columns }: ReactTableProps<T>) => {
+const CustomTable = <T extends object>({
+  data,
+  columns,
+}: ReactTableProps<T>) => {
   const router = useRouter();
 
   const [globalFilter, setGlobalFilter] = React.useState<string>("");
   const [pagination, setPagination] = React.useState<PaginationState>({
     pageIndex: 0,
-    pageSize: 10,
+    pageSize: 2,
   });
 
   const table = useReactTable({
@@ -200,7 +202,7 @@ const Table = <T extends object>({ data, columns }: ReactTableProps<T>) => {
   );
 };
 
-export default Table;
+export default CustomTable;
 
 function Filter({
   column,
